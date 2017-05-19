@@ -34,6 +34,10 @@ $navbar-default-bg: #222;
     margin-top: 300px;
 }
 
+.center {
+    text-align: center;
+}
+
 .btn-xlarge {
     font-size: 1.7em;
     background-color: black;
@@ -57,4 +61,13 @@ $navbar-default-bg: #222;
 .footer ul {
     float: right;
     list-style: none;
+}
+
+.article-actions {
+    border-top: 1px solid #eaeaea;
+    padding-top: 5px;
+}
+
+.description {
+    margin-top: 0;
 }
