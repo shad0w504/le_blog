@@ -1,13 +1,20 @@
 <h1 align="center">Listing all Articles</h1>
 
 <% @articles.each do |art| %>
-  <div class="col-xs-4 col-xs-offset-1">
+  <div class="col-xs-8 col-xs-offset-2">
     <div class="well well-lg">
       <div class="article-title">
         <%= link_to art.title, article_path(art) %>
       </div>
       <div class="article-body">
         <%= truncate(art.description, length: 30) %>
+        <div class="article-meta-details">
+          <small>
+            Created by: <%= art.user.username %>, 
+            <%= time_ago_in_words(art.created_at) %> ago, 
+            last updated: <%= time_ago_in_words(art.updated_at) %> ago
+          </small>
+        </div>
       </div>
       <div class="article-actions">
         <%= link_to "Edit this article", edit_article_path(art), class: "btn btn-xs btn-primary" %>
