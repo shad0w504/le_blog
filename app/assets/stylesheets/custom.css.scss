@@ -94,3 +94,14 @@ $navbar-default-bg: #222;
     list-style: none;
     padding-left:0;
 }
+
+.badge {
+    background: #CEF6F5;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.input_checkbox input {
+    width: auto !important;
+}
