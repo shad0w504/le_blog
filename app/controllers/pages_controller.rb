@@ -24,9 +24,10 @@ class PagesController < ApplicationController
         @json.set! :articles do
           @json.set! :categories do
             @json.array! arts[0].categories do |c|
-              @json.title c.name
+              @json.name c.name
               @json.set! :articles do
                 @json.array! c.articles do |a|
+                  next if current_user = u
                   @json.title a.title
                   @json.description a.description
                 end
