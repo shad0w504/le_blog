@@ -16,11 +16,12 @@ class PagesController < ApplicationController
   private
     def set_json
       user = User.first
+      articles = user.articles
       @json = Jbuilder.new
       @json.set! :user do
         @json.set! :name, user.username
         @json.set! :articles do
-          @json.array! user.articles, :title, :description
+          @json.array! articles, :categories
         end
       end
     end
