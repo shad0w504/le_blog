@@ -1,6 +1,4 @@
 require 'json'
-require 'multi_json'
-MultiJson.use :yajl
 
 class PagesController < ApplicationController
   def home
@@ -12,10 +10,16 @@ class PagesController < ApplicationController
   end
     
   def try
-    users = User.all
-    
-    @json = Jbuilder.new
-    @json.array! users, :username, :email
-    @json
+    @json = set_json
   end
+  
+  private
+    def set_json
+      user = User.first
+      @json = Jbuilder.new
+      @json.set! :user do
+        @json.set! :name, user.username
+        @json.set! :email, user.email
+      end
+    end
 end
