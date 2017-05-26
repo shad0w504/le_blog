@@ -1,9 +1,19 @@
+require 'json'
+
 class PagesController < ApplicationController
-    def home
+  def home
         
-    end
+  end
     
-    def about
+  def about
         
-    end
+  end
+    
+  def try
+    car = {make: "bmw", year: "2003"}
+       
+    car.to_json
+    
+    puts(car)
+  end
 end
