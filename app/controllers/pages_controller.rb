@@ -21,7 +21,7 @@ class PagesController < ApplicationController
       @json.set! :user do
         @json.set! :name, user.username
         @json.set! :articles do
-          @json.array! articles, :categories
+          @json.array! articles, :categories.name
         end
       end
     end
