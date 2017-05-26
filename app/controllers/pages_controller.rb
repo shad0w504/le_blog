@@ -1,4 +1,6 @@
 require 'json'
+require 'multi_json'
+MultiJson.use :yajl
 
 class PagesController < ApplicationController
   def home
@@ -10,10 +12,10 @@ class PagesController < ApplicationController
   end
     
   def try
-    @car = {"make": "bmw", "year": 2003}
-       
-    @car.to_json
+    users = User.all
     
-    @car
+    @json = Jbuilder.new
+    @json.array! users, :username, :email
+    @json
   end
 end
