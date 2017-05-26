@@ -10,10 +10,10 @@ class PagesController < ApplicationController
   end
     
   def try
-    car = {make: "bmw", year: "2003"}
+    @car = {make: "bmw", year: "2003"}
        
-    car.to_json
+    @car.to_json
     
-    puts(car)
+    @car
   end
 end
