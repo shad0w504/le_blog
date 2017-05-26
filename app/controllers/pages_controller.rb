@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   end
     
   def try
-    @car = {make: bmw, year: 2003}
+    @car = {make: 'bmw', year: 2003}
        
     @car.to_json
     
