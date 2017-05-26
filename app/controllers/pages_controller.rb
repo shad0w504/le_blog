@@ -19,7 +19,9 @@ class PagesController < ApplicationController
       @json = Jbuilder.new
       @json.set! :user do
         @json.set! :name, user.username
-        @json.set! :email, user.email
+        @json.set! :articles do
+          @json.array! user.articles, :title, :description
+        end
       end
     end
 end
