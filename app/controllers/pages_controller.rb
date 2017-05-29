@@ -16,15 +16,16 @@ class PagesController < ApplicationController
   private
     def set_json
       users = User.all
-      art = 0
       @json = Jbuilder.new
       @json.array! users do |u|
         @json.set! :name, u.username
         arts = u.articles
+        art = 0
         @json.set! :articles do
           @json.set! :categories do
-            @json.array! arts[0].categories do |c|
+            @json.array! arts[art].categories do |c|
               @json.name c.name
+              @json.testah art
               @json.set! :articles do
                 @json.array! c.articles do |a|
                   if current_user_article?(u, a)
@@ -32,6 +33,7 @@ class PagesController < ApplicationController
                     @json.description a.description
                   end
                 end
+              art = art + 1
               end
             end
           end
