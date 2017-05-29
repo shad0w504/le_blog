@@ -27,14 +27,19 @@ class PagesController < ApplicationController
               @json.name c.name
               @json.set! :articles do
                 @json.array! c.articles do |a|
-                  next if current_user = u
-                  @json.title a.title
-                  @json.description a.description
+                  if current_user_article?(u, a)
+                    @json.title a.title
+                    @json.description a.description
+                  end
                 end
               end
             end
           end
         end
       end
+    end
+    
+    def current_user_article?(u, a)
+      u = a.user
     end
 end
