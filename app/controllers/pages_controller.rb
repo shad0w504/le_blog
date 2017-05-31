@@ -20,20 +20,20 @@ class PagesController < ApplicationController
       @json.array! users do |u|
         @json.set! :name, u.username
         arts = u.articles
-        art = 0
         @json.set! :articles do
           @json.set! :categories do
-            @json.array! arts[art].categories do |c|
-              @json.name c.name
-              @json.testah art
-              @json.set! :articles do
-                @json.array! c.articles do |a|
-                  if current_user_article?(u, a)
-                    @json.title a.title
-                    @json.description a.description
+            arts.each do |art|
+              @json.array! art.categories do |c|
+                @json.name c.name
+                @json.testah art
+                @json.set! :articles do
+                  @json.array! c.articles do |a|
+                    if (a.user == u)
+                      @json.title a.title
+                      @json.description a.description
+                    end
                   end
                 end
-              art = art + 1
               end
             end
           end
