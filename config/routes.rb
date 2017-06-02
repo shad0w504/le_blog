@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   
   get 'try', to: 'pages#try'
+  get 'try2', to: 'pages#try2'
 
   resources :articles
   
