@@ -17,21 +17,27 @@ class PagesController < ApplicationController
     @json = set_json_user(4)
   end
   
+  def try3
+    @json = set_json_cats
+  end
+  
   private
     def set_json
       users = User.all
       categories = Category.all
       @json = Jbuilder.new
-      @json.array! users do |u|
-        @json.set! :name, u.username
-        @json.set! :categories do
-          @json.array! categories do |c|
-            @json.set! c.name do
-              @json.set! :articles do
-                @json.array! c.articles do |a|
-                  if (a.user == u)
-                    @json.title a.title
-                    @json.description a.description
+      @json.set! :users do
+        @json.array! users do |u|
+          @json.set! :name, u.username
+          @json.set! :categories do
+            @json.array! categories do |c|
+              @json.set! c.name do
+                @json.set! :articles do
+                  @json.array! c.articles do |a|
+                    if (a.user == u)
+                      @json.title a.title
+                      @json.description a.description
+                    end
                   end
                 end
               end
@@ -57,6 +63,23 @@ class PagesController < ApplicationController
                     @json.description a.description
                   end
                 end
+              end
+            end
+          end
+        end
+      end
+    end
+    
+    def set_json_cats
+      categories = Category.all
+      @json = Jbuilder.new
+      @json.set! :categories do
+        @json.array! categories do |c|
+          @json.set! c.name do
+            @json.set! :articles do
+              @json.array! c.articles do |a|
+                @json.title a.title
+                @json.description a.description
               end
             end
           end
